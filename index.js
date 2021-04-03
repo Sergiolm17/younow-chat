@@ -18,12 +18,13 @@ io.sockets.on("connection", async function (socket) {
     });
     const [page] = await browser.pages();
 
-    async function mutationListener(addedText) {
+    async function mutationListener(addedText, src) {
         let data = addedText.split(/\r|\n/);
         socket.emit("roomJoined", {
             nivel: data[0],
             username: data[1],
             text: data[2],
+            src,
         });
     }
     page.exposeFunction("mutationListener", mutationListener);
@@ -36,7 +37,10 @@ io.sockets.on("connection", async function (socket) {
         const mutationObserver = new MutationObserver((mutationsList) => {
             for (const mutation of mutationsList) {
                 const { removedNodes, addedNodes } = mutation;
-                mutationListener(addedNodes[0].innerText);
+                mutationListener(
+                    addedNodes[0].innerText,
+                    addedNodes[0].getAttribute("src")
+                );
             }
         });
         mutationObserver.observe(
