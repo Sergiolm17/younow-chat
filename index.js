@@ -12,7 +12,10 @@ const http = require("http").Server(app);
 const io = socketio(http);
 io.sockets.on("connection", async function (socket) {
     console.log("user connected");
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    });
     const [page] = await browser.pages();
 
     async function mutationListener(addedText) {

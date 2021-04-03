@@ -9,5 +9,10 @@
             "description": "Tu usuario de younow)",
             "required": true
         }
-    }
+    },
+    "buildpacks": [
+        {
+            "url": "https://github.com/jontewks/puppeteer-heroku-buildpack.git"
+        }
+    ]
 }
