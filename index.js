@@ -3,6 +3,7 @@ const express = require("express");
 const socketio = require("socket.io");
 const app = express();
 const PORT = process.env.PORT || 3000;
+const USER = process.env.YOUNOW_USER || "bettercalljoel";
 
 app.get("/", function (req, res) {
     res.sendFile(__dirname + "/index.html");
@@ -10,29 +11,27 @@ app.get("/", function (req, res) {
 const http = require("http").Server(app);
 const io = socketio(http);
 io.sockets.on("connection", async function (socket) {
-    //const client = new Client(/* ... */);
-    //await client.connect(); // connect to database
-
-    const browser = await puppeteer.launch({ headless: false });
+    console.log("user connected");
+    const browser = await puppeteer.launch({ headless: true });
     const [page] = await browser.pages();
 
-    // call a handler when a mutation happens
     async function mutationListener(addedText) {
         let data = addedText.split(/\r|\n/);
         console.log(data);
-
-        //await client.query("INSERT INTO users(text) VALUES($1)", [addedText]);
+        socket.emit("roomJoined", {
+            nivel: data[0],
+            username: data[1],
+            text: data[2],
+        });
     }
     page.exposeFunction("mutationListener", mutationListener);
 
-    await page.goto(`https://www.younow.com/${process.env.YOUNOW_USER}`);
+    await page.goto(`https://www.younow.com/${USER}`);
     await page.waitForSelector(".chat-list");
     await page.click('button[class="button button--green"]');
     await page.evaluate(() => {
-        // wait for any mutations inside a specific element (e.g. the chatbox)
         const observerTarget = document.querySelector(".chat-list");
         const mutationObserver = new MutationObserver((mutationsList) => {
-            // handle change by checking which elements were added and which were deleted
             for (const mutation of mutationsList) {
                 const { removedNodes, addedNodes } = mutation;
                 mutationListener(addedNodes[0].innerText);
@@ -43,6 +42,10 @@ io.sockets.on("connection", async function (socket) {
             observerTarget,
             { attributes: true, childList: true, subtree: true }
         );
+    });
+    socket.on("disconnect", async () => {
+        console.log("user disconnected");
+        await browser.close();
     });
 });
 
