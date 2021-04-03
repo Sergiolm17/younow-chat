@@ -1,7 +1,15 @@
 const puppeteer = require("puppeteer");
-const { Client } = require("pg");
+const express = require("express");
+const socketio = require("socket.io");
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-(async () => {
+app.get("/", function (req, res) {
+    res.sendFile(__dirname + "/index.html");
+});
+const http = require("http").Server(app);
+const io = socketio(http);
+io.sockets.on("connection", async function (socket) {
     //const client = new Client(/* ... */);
     //await client.connect(); // connect to database
 
@@ -36,4 +44,6 @@ const { Client } = require("pg");
             { attributes: true, childList: true, subtree: true }
         );
     });
-})();
+});
+
+http.listen(PORT, () => console.log("listening on http://localhost:" + PORT));
