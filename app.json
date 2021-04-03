@@ -1,6 +1,6 @@
 {
     "name": "YOUNOW-BOT",
-    "description": "Let people invite themselves to your Slack",
+    "description": "Puedes obtener el chat",
     "logo": "https://i.imgur.com/odDO1Fx.png",
     "repository": "https://github.com/rauchg/slackin",
     "keywords": ["node", "slack"],
