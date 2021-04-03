@@ -9,18 +9,15 @@ const { Client } = require("pg");
     const [page] = await browser.pages();
 
     // call a handler when a mutation happens
-    var count = 0;
     async function mutationListener(addedText) {
-        console.log(`${count}`);
         let data = addedText.split(/\r|\n/);
         console.log(data);
-        count++;
 
         //await client.query("INSERT INTO users(text) VALUES($1)", [addedText]);
     }
     page.exposeFunction("mutationListener", mutationListener);
 
-    await page.goto("https://www.younow.com/RADIOPLAY");
+    await page.goto(`https://www.younow.com/${process.env.YOUNOW_USER}`);
     await page.waitForSelector(".chat-list");
     await page.click('button[class="button button--green"]');
     await page.evaluate(() => {
@@ -30,9 +27,6 @@ const { Client } = require("pg");
             // handle change by checking which elements were added and which were deleted
             for (const mutation of mutationsList) {
                 const { removedNodes, addedNodes } = mutation;
-                // example: pass innerText of first added element to our mutationListener
-                console.log("dddddddd", addedNodes[0]);
-
                 mutationListener(addedNodes[0].innerText);
             }
         });
