@@ -1,8 +1,8 @@
 {
     "name": "YOUNOW-BOT",
     "description": "Puedes obtener el chat",
-    "logo": "https://i.imgur.com/odDO1Fx.png",
-    "repository": "https://github.com/rauchg/slackin",
+    "logo": "https://ynassets.younow.com/user/live/53382622/53382622.jpg?1617476106219",
+    "repository": "https://github.com/Sergiolm17/younow-chat",
     "keywords": ["node", "slack"],
     "env": {
         "YOUNOW_USER": {
