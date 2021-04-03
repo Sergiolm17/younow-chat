@@ -20,7 +20,6 @@ io.sockets.on("connection", async function (socket) {
 
     async function mutationListener(addedText) {
         let data = addedText.split(/\r|\n/);
-        console.log(data);
         socket.emit("roomJoined", {
             nivel: data[0],
             username: data[1],
