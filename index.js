@@ -4,16 +4,21 @@ const socketio = require("socket.io");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const USER = process.env.YOUNOW_USER || "bettercalljoel";
+const URL =
+    `https://meet.google.com/fjd-diaw-mqw ` || `https://www.younow.com/${USER}`;
+// add middlewares
+app.use(express.static(path.join(__dirname, "..", "build")));
+app.use(express.static("public"));
 
-app.get("/", function (req, res) {
-    res.sendFile(__dirname + "/index.html");
+app.use((req, res, next) => {
+    res.sendFile(path.join(__dirname, "..", "build", "index.html"));
 });
 const http = require("http").Server(app);
 const io = socketio(http);
 io.sockets.on("connection", async function (socket) {
     console.log("user connected");
     const browser = await puppeteer.launch({
-        headless: true,
+        headless: false,
         args: ["--no-sandbox", "--disable-setuid-sandbox"],
     });
     const [page] = await browser.pages();
@@ -29,7 +34,7 @@ io.sockets.on("connection", async function (socket) {
     }
     page.exposeFunction("mutationListener", mutationListener);
 
-    await page.goto(`https://www.younow.com/${USER}`);
+    await page.goto(URL);
     await page.waitForSelector(".chat-list");
     await page.click('button[class="button button--green"]');
     await page.evaluate(() => {
