@@ -4,8 +4,7 @@ const socketio = require("socket.io");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const USER = process.env.YOUNOW_USER || "bettercalljoel";
-const URL =
-    `https://meet.google.com/fjd-diaw-mqw ` || `https://www.younow.com/${USER}`;
+const URL = `https://www.younow.com/${USER}`;
 // add middlewares
 app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(express.static("public"));
