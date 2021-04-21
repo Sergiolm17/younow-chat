@@ -8,11 +8,11 @@ const PORT = process.env.PORT || 3000;
 const USER = process.env.YOUNOW_USER || "bettercalljoel";
 const URL = `https://www.younow.com/${USER}`;
 // add middlewares
-app.use(express.static(path.join(__dirname, "..", "build")));
+app.use(express.static(path.join(__dirname, "build")));
 app.use(express.static("public"));
 
 app.use((req, res, next) => {
-    res.sendFile(path.join(__dirname, "..", "build", "index.html"));
+    res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 const http = require("http").Server(app);
 const io = socketio(http);
