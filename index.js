@@ -4,7 +4,7 @@ const path = require("path");
 
 const socketio = require("socket.io");
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const USER = process.env.YOUNOW_USER || "bettercalljoel";
 const URL = `https://www.younow.com/${USER}`;
 // add middlewares
