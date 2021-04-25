@@ -110,14 +110,10 @@ const io = socketio(http);
             io.sockets.emit("get_audience", body);
         }
         if (response.url().includes("https://ynassets.younow.com/user/live")) {
-            const body = await response.json();
-            //await fs.writeFile("./data.json", JSON.stringify(body, null, 2));
-            io.sockets.emit("get_images", body);
+            io.sockets.emit("get_images", { url: response.url() });
         }
         if (response.url().includes("https://ynassets.younow.com/gifts/live")) {
-            const body = await response.json();
-            //await fs.writeFile("./data.json", JSON.stringify(body, null, 2));
-            io.sockets.emit("get_gifts", body);
+            io.sockets.emit("get_gifts", { url: response.url() });
         }
         if (
             response
