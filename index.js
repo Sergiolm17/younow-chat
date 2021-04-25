@@ -109,6 +109,16 @@ const io = socketio(http);
             //await fs.writeFile("./data.json", JSON.stringify(body, null, 2));
             io.sockets.emit("get_audience", body);
         }
+        if (response.url().includes("https://ynassets.younow.com/user/live")) {
+            const body = await response.json();
+            //await fs.writeFile("./data.json", JSON.stringify(body, null, 2));
+            io.sockets.emit("get_images", body);
+        }
+        if (response.url().includes("https://ynassets.younow.com/gifts/live")) {
+            const body = await response.json();
+            //await fs.writeFile("./data.json", JSON.stringify(body, null, 2));
+            io.sockets.emit("get_gifts", body);
+        }
     });
 })();
 //.gift-overlay
