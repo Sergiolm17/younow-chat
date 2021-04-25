@@ -15,9 +15,12 @@
                     const sessionID = socket.id;
                     console.log(sessionID);
                 });
-                socket.on("roomJoined", (msg) => {
-                    console.log("roomJoined", msg);
+                socket.on("get_message", (msg) => {
+                    console.log("get_message", msg);
                     $messages.prepend(JSON.stringify(msg));
+                });
+                socket.on("get_audience", (msg) => {
+                    console.log("get_audience", msg);
                 });
             });
         </script>
