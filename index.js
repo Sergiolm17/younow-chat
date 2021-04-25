@@ -123,7 +123,6 @@ const io = socketio(http);
                 )
         ) {
             const body = await response.json();
-            //await fs.writeFile("./data.json", JSON.stringify(body, null, 2));
             io.sockets.emit("get_similar", body);
         }
     });
