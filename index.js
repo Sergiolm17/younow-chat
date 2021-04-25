@@ -119,6 +119,17 @@ const io = socketio(http);
             //await fs.writeFile("./data.json", JSON.stringify(body, null, 2));
             io.sockets.emit("get_gifts", body);
         }
+        if (
+            response
+                .url()
+                .includes(
+                    "https://cdn.younow.com/php/api/reco/similarBroadcasters"
+                )
+        ) {
+            const body = await response.json();
+            //await fs.writeFile("./data.json", JSON.stringify(body, null, 2));
+            io.sockets.emit("get_similar", body);
+        }
     });
 })();
 //.gift-overlay
