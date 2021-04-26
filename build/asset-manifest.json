@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "/static/css/main.8b3632c3.chunk.css",
-    "main.js": "/static/js/main.287289bf.chunk.js",
-    "main.js.map": "/static/js/main.287289bf.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.ce4f3554.js",
-    "runtime-main.js.map": "/static/js/runtime-main.ce4f3554.js.map",
-    "static/js/2.8b1b45ba.chunk.js": "/static/js/2.8b1b45ba.chunk.js",
-    "static/js/2.8b1b45ba.chunk.js.map": "/static/js/2.8b1b45ba.chunk.js.map",
-    "static/js/3.9d491ca6.chunk.js": "/static/js/3.9d491ca6.chunk.js",
-    "static/js/3.9d491ca6.chunk.js.map": "/static/js/3.9d491ca6.chunk.js.map",
-    "static/js/4.f85b9d72.chunk.js": "/static/js/4.f85b9d72.chunk.js",
-    "static/js/4.f85b9d72.chunk.js.map": "/static/js/4.f85b9d72.chunk.js.map",
+    "main.js": "/static/js/main.ba8bf7c6.chunk.js",
+    "main.js.map": "/static/js/main.ba8bf7c6.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.174d6408.js",
+    "runtime-main.js.map": "/static/js/runtime-main.174d6408.js.map",
+    "static/js/2.e711543a.chunk.js": "/static/js/2.e711543a.chunk.js",
+    "static/js/2.e711543a.chunk.js.map": "/static/js/2.e711543a.chunk.js.map",
+    "static/js/3.af87596b.chunk.js": "/static/js/3.af87596b.chunk.js",
+    "static/js/3.af87596b.chunk.js.map": "/static/js/3.af87596b.chunk.js.map",
+    "static/js/4.bd3e29c6.chunk.js": "/static/js/4.bd3e29c6.chunk.js",
+    "static/js/4.bd3e29c6.chunk.js.map": "/static/js/4.bd3e29c6.chunk.js.map",
     "index.html": "/index.html",
     "static/css/main.8b3632c3.chunk.css.map": "/static/css/main.8b3632c3.chunk.css.map",
-    "static/js/2.8b1b45ba.chunk.js.LICENSE.txt": "/static/js/2.8b1b45ba.chunk.js.LICENSE.txt",
-    "static/js/3.9d491ca6.chunk.js.LICENSE.txt": "/static/js/3.9d491ca6.chunk.js.LICENSE.txt",
+    "static/js/2.e711543a.chunk.js.LICENSE.txt": "/static/js/2.e711543a.chunk.js.LICENSE.txt",
+    "static/js/3.af87596b.chunk.js.LICENSE.txt": "/static/js/3.af87596b.chunk.js.LICENSE.txt",
     "static/media/sound1.86bb37b6.mp3": "/static/media/sound1.86bb37b6.mp3"
   },
   "entrypoints": [
-    "static/js/runtime-main.ce4f3554.js",
-    "static/js/2.8b1b45ba.chunk.js",
+    "static/js/runtime-main.174d6408.js",
+    "static/js/2.e711543a.chunk.js",
     "static/css/main.8b3632c3.chunk.css",
-    "static/js/main.287289bf.chunk.js"
+    "static/js/main.ba8bf7c6.chunk.js"
   ]
 }
