@@ -27,7 +27,7 @@ const io = socketio(http);
     await page.goto(URL);
     await page.setRequestInterception(true);
 
-    await page.waitForSelector(".chat-list");
+    await page.waitForSelector(".title");
     await page.click('button[class="button button--green"]');
     page.exposeFunction("mutationListener", mutationListener);
     async function mutationListener(addedText, src) {
