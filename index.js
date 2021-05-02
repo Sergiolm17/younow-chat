@@ -40,6 +40,18 @@ const io = socketio(http);
             src,
         };
         io.sockets.emit("get_message", body);
+        fetch("https://api.nightbot.tv/1/song_requests/playlist", {
+            body: "q=https%3A%2F%2Fyoutu.be%2FN9qYF9DZPdw",
+            headers: {
+                Authorization: "Bearer 4fb1fed8889ec9d1c319d5b3c9a54b23",
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            method: "POST",
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data); // JSON data parsed by `data.json()` call
+            });
     }
     page.exposeFunction("mutationListenergift", mutationListenergift);
     async function mutationListenergift(addedText, src) {
@@ -80,7 +92,7 @@ const io = socketio(http);
                 const { removedNodes, addedNodes } = mutation;
                 mutationListenergift(
                     addedNodes[0].innerText,
-                    addedNodes[0].getAttribute("src")
+                    addedNodes[0].getAttribute("src"),
                 );
             }
         });
@@ -102,7 +114,7 @@ const io = socketio(http);
             response
                 .url()
                 .includes(
-                    "https://cdn.younow.com/php/api/broadcast/audience/broadcaster=0/channelId"
+                    "https://cdn.younow.com/php/api/broadcast/audience/broadcaster=0/channelId",
                 )
         ) {
             const body = await response.json();
@@ -119,7 +131,7 @@ const io = socketio(http);
             response
                 .url()
                 .includes(
-                    "https://cdn.younow.com/php/api/reco/similarBroadcasters"
+                    "https://cdn.younow.com/php/api/reco/similarBroadcasters",
                 )
         ) {
             const body = await response.json();
