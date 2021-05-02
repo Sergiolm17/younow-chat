@@ -6,9 +6,25 @@ const fs = require("fs").promises;
 const socketio = require("socket.io");
 const app = express();
 const PORT = process.env.PORT || 3001;
-const USER = process.env.YOUNOW_USER || "_Loverboy";
+const USER = process.env.YOUNOW_USER;
 const URL = `https://www.younow.com/${USER}`;
 // add middlewares
+// set a cookie
+app.use(function (req, res, next) {
+    // check if client sent cookie
+    var cookie = req.cookies.username;
+    if (cookie === undefined) {
+        // no: set a new cookie
+        res.cookie("username", process.env.YOUNOW_USER, {
+            maxAge: 900000,
+            httpOnly: true,
+        });
+    } else {
+        // yes, cookie was already present
+        console.log("cookie exists", cookie);
+    }
+    next(); // <-- important!
+});
 app.use(express.static(path.join(__dirname, "build")));
 app.use(express.static("public"));
 
