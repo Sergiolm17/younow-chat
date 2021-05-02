@@ -12,17 +12,11 @@ const URL = `https://www.younow.com/${USER}`;
 // set a cookie
 app.use(function (req, res, next) {
     // check if client sent cookie
-    var cookie = req.cookies.username;
-    if (cookie === undefined) {
-        // no: set a new cookie
-        res.cookie("username", process.env.YOUNOW_USER, {
-            maxAge: 900000,
-            httpOnly: true,
-        });
-    } else {
-        // yes, cookie was already present
-        console.log("cookie exists", cookie);
-    }
+    res.cookie("username", process.env.YOUNOW_USER, {
+        maxAge: 900000,
+        httpOnly: true,
+    });
+
     next(); // <-- important!
 });
 app.use(express.static(path.join(__dirname, "build")));
