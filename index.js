@@ -35,7 +35,7 @@ app.use((req, res, next) => {
 const http = require("http").Server(app);
 const io = socketio(http, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "*",
         methods: ["GET", "POST"],
     },
 });
