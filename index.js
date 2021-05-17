@@ -5,27 +5,11 @@ const fs = require("fs").promises;
 
 const socketio = require("socket.io");
 const app = express();
-var cors = require("cors");
 
 const PORT = process.env.PORT || 3005;
 const USER = process.env.YOUNOW_USER || "BrownEyedGirl22";
 const URL = `https://www.younow.com/${USER}`;
-// add middlewares
-app.use(
-    cors({
-        origin: "http://localhost:3000",
-    }),
-);
-// set a cookie
-app.use(function (req, res, next) {
-    // check if client sent cookie
-    res.cookie("username", process.env.YOUNOW_USER, {
-        maxAge: 900000,
-        httpOnly: true,
-    });
 
-    next(); // <-- important!
-});
 app.use(express.static(path.join(__dirname, "build")));
 app.use(express.static("public"));
 
@@ -39,7 +23,9 @@ const io = socketio(http, {
         methods: ["GET", "POST"],
     },
 });
+
 (async () => {
+    
     const browser = await puppeteer.launch({
         headless: true,
         args: ["--no-sandbox", "--disable-setuid-sandbox"],
