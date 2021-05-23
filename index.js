@@ -25,7 +25,6 @@ const io = socketio(http, {
 });
 
 (async () => {
-    
     const browser = await puppeteer.launch({
         headless: true,
         args: ["--no-sandbox", "--disable-setuid-sandbox"],
@@ -108,6 +107,7 @@ const io = socketio(http, {
         }
         //stikers
         if (response.url().includes("https://ynassets.younow.com/gifts/live")) {
+            console.log("get_gifts", { url: response.url() });
             io.sockets.emit("get_gifts", { url: response.url() });
         }
         if (
